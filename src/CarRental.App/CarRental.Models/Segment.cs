@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CarRental.Models
+﻿namespace CarRental.Models
 {
     public enum Segment
     {

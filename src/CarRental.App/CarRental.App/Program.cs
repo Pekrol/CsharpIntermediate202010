@@ -1,4 +1,5 @@
 ﻿using System;
+using CarRental.Models;
 
 namespace CarRental.App
 {
