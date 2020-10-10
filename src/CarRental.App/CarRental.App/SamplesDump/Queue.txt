@@ -1,9 +1,0 @@
-﻿   var carsStack = new Queue<Car>();
-  carsStack.Enqueue(new Car { PlateId = "GDXXXX01" });
-  carsStack.Enqueue(new Car { PlateId = "GDXXXX02" });
-  carsStack.Enqueue(new Car { PlateId = "GDXXXX03" });
-
-  Console.WriteLine($"Cars queue has {carsStack.Count}");
-
-  var firstCar = carsStack.Dequeue();
-  Console.WriteLine($"First car plate is {firstCar.PlateId}");

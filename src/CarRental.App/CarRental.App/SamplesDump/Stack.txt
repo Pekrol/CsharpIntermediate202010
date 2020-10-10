@@ -1,7 +1,0 @@
-﻿
-      var carsStack = new Stack<Car>();
-            carsStack.Push(new Car { PlateId = "GDXXXX01" });
-            carsStack.Push(new Car { PlateId = "GDXXXX02" });
-            carsStack.Push(new Car { PlateId = "GDXXXX03" });
-
-            Console.WriteLine($"Cars stack has {carsStack.Count}");
