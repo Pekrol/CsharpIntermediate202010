@@ -16,25 +16,23 @@ namespace CarRental.App
             carsStack.Add(new Car
             {
                 PlateId = "GDXXXX01",
-                Price = 123.04,
                 Segment = Segment.Family,
                 ReservationHistory = new List<Reservation>()
               {
-                  new Reservation { StartDate = new DateTime(2020, 10, 8), EndDate = new DateTime(2020, 12, 9)},
-                  new Reservation { StartDate = new DateTime(2020, 10, 8), EndDate = new DateTime(2020, 6, 12)},
-                  new Reservation { StartDate = new DateTime(2020, 1, 8), EndDate = new DateTime(2020, 11, 12)}
+                  new Reservation(12) { StartDate = new DateTime(2020, 10, 8), EndDate = new DateTime(2020, 12, 9)},
+                  new Reservation(12) { StartDate = new DateTime(2020, 10, 8), EndDate = new DateTime(2020, 6, 12)},
+                  new Reservation(12) { StartDate = new DateTime(2020, 1, 8), EndDate = new DateTime(2020, 11, 12)}
               }
             });
             carsStack.Add(new Car
             {
                 PlateId = "GDXXXX02",
-                Price = 12332.04,
                 Segment = Segment.Premium,
                 ReservationHistory = new List<Reservation>()
               {
-                  new Reservation { StartDate = new DateTime(2019, 10, 8), EndDate = new DateTime(2019, 12, 9)},
-                  new Reservation { StartDate = new DateTime(2020, 6, 8), EndDate = new DateTime(2020, 6, 9)},
-                  new Reservation { StartDate = new DateTime(2019, 1, 8), EndDate = new DateTime(2019, 11, 12)}
+                  new Reservation(12) { StartDate = new DateTime(2019, 10, 8), EndDate = new DateTime(2019, 12, 9)},
+                  new Reservation(12) { StartDate = new DateTime(2020, 6, 8), EndDate = new DateTime(2020, 6, 9)},
+                  new Reservation(12) { StartDate = new DateTime(2019, 1, 8), EndDate = new DateTime(2019, 11, 12)}
               }
             });
             carsStack.Add(new Car { PlateId = "GDXXXX03", Price = 122323.04, Segment = Segment.Sport });
@@ -52,9 +50,6 @@ namespace CarRental.App
 
             var expectedIncome2 = reservations.Select(r => r.Price).Sum();
 
-            //Console.WriteLine($"Expected income is {expectedIncome}");
-            //Console.WriteLine($"Expected income2 is {expectedIncome2}");
-
             var carToReserve = carsStack
                 //.Where()
                 .FirstOrDefault(c => c.ReservationHistory != null && !c.IsReserved());
@@ -62,8 +57,6 @@ namespace CarRental.App
             Console.WriteLine($"Reserved car: {carToReserve?.PlateId}");
 
             var emptyNumberList = Enumerable.Empty<int>().ToList();
-
-       
         }
 
         private class ReservationComparer : IEqualityComparer<Reservation>

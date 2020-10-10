@@ -6,11 +6,16 @@ namespace CarRental.Models
 {
     public class Reservation : IEquatable<Reservation>
     {
+        public Reservation(double price)
+        {
+            Price = price;
+        }
+
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
 
-        public double Price => (EndDate - StartDate).Days * 40;
+        public double Price { get; }
 
         public bool Equals(Reservation other)
         {
