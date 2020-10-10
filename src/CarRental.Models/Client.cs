@@ -4,6 +4,10 @@ using System.Text;
 
 namespace CarRental.Models
 {
+
+    /// <summary>
+    /// Clitent class
+    /// </summary>
     public class Client
     {
 
