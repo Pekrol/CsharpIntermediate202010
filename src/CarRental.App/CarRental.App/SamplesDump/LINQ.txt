@@ -1,0 +1,28 @@
+﻿     //var defaultNumber = emptyNumberList.DefaultIfEmpty(1).Sin();
+
+            //Console.WriteLine($"Default number: {defaultNumber}");
+
+            //Console.WriteLine(string.Join("\n", reservations));
+
+            //var numbers = Enumerable.Range(0, 96).ToList();
+            //var page = 10;
+            //var pageSize = 10;
+            //var pageResult = new List<int>();
+
+            //for(int index = (page - 1) * pageSize; index < page * pageSize || index < numbers.Count; index++)
+            //{
+            //    pageResult.Add(numbers[index]);
+            //}
+
+            //var pageResultLinq = numbers.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            //Console.WriteLine(string.Join(",", pageResult));
+            //Console.WriteLine(string.Join(",", pageResultLinq));
+
+
+
+            //Console.WriteLine(string.Join("\n", carsStack.Select(c => new { c.PlateId, MyPrice = c.Price })
+            //    .Where(c => c.MyPrice > 1000)
+            //    .Select(c => c.PlateId)));
+
+            //Console.WriteLine(string.Join("\n", carsStack.Select((c, index) => $"{index}: {c.PlateId}" )));
