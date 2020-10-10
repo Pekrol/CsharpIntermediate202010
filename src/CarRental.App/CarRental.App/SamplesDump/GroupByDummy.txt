@@ -1,0 +1,15 @@
+﻿   foreach(var word in words)
+            {
+                if (wordsDict.ContainsKey(word.Length))
+                {
+                    wordsDict[word.Length].Add(word);
+                    continue;
+                }
+
+                wordsDict.Add(word.Length, new List<string>() { word });
+            }
+
+            foreach(var key in words.GroupBy(w => w.Length))
+            {
+                Console.WriteLine($"{key.Key}, {string.Join(",", key)}");
+            }
