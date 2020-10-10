@@ -6,7 +6,7 @@ namespace CarRental.Models
 {
 
     /// <summary>
-    /// Clitent class
+    /// Clitent class 
     /// </summary>
     public class Client
     {
