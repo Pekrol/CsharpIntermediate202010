@@ -16,23 +16,23 @@ namespace CarRental.Models
         /// <summary>
         /// Id property
         /// </summary>
-        public int id { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// Name property
         /// </summary>
-        public string name { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// Surname property
         /// </summary>
-        public string surname { get; set; }
+        public string Surname { get; set; }
         /// <summary>
-        /// Age property
+        /// Adult boolean property
         /// </summary>
-        public bool adult { get; set; }
+        public bool Adult { get; set; }
         /// <summary>
         /// Found property
         /// </summary>
-        private double capital { get; set; }
+        private double Capital { get; set; }
         #endregion
 
 
@@ -46,10 +46,10 @@ namespace CarRental.Models
         public Client(string name,string surname,bool adult)
         {
             idIncrement++;
-            this.id = idIncrement;
-            this.name = name;
-            this.surname = surname;
-            this.adult = adult;
+            this.Id = idIncrement;
+            this.Name = name;
+            this.Surname = surname;
+            this.Adult = adult;
         }
         #endregion
 
@@ -61,18 +61,25 @@ namespace CarRental.Models
         /// <param name="money"></param>
         public void AddFounds(double money)
         {
-            capital += money;
+            Capital += money;
         }
 
         /// <summary>
         /// Make payment
         /// </summary>
         /// <param name="price"></param>
-        public void makePayment(double price)
+        public void MakePayment(double price)
         {
-            capital -= price;
+            Capital -= price;
         }
 
+        /// <summary>
+        /// Show clients $$$$$
+        /// </summary>
+        public void ShowClientsCapital()
+        {
+            Console.WriteLine($"Clients capital: {Capital}");
+        }
         #endregion
     }
 }
