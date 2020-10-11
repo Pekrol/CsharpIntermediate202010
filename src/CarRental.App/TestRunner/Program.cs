@@ -1,9 +1,8 @@
-﻿using CarRental.Models;
-using System;
-using System.Drawing;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using TestRunner.Framework.Assertions;
+using System.Threading.Tasks;
 using TestRunner.Framework.Attributes;
 using TestRunner.Framework.Exceptions;
 
@@ -16,37 +15,71 @@ namespace TestRunner
             //Console.WriteLine("Tests will be run here!");
 
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
-            var classes = executingAssembly.GetExportedTypes();
+            var classes = executingAssembly.GetExportedTypes()
+                .Where(t => t.IsPublic && t.GetCustomAttributes().Any(a => a is TestClassAttribute));
 
-            Type testContainterType = typeof(ReservationModuleTests);
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-            var testMethods = testContainterType
-                .GetMethods()
-                .Where(m => m.IsPublic
-                && m.GetCustomAttributes().Any(attr => attr is TestMethodAttribute));
-
-            foreach (var test in testMethods)
+            foreach (var testClass in classes)
             {
-                try
+                var testMethods = testClass
+               .GetMethods()
+               .Where(m => m.IsPublic
+               && m.GetCustomAttributes().Any(attr => attr is TestMethodAttribute));
+
+                Parallel.ForEach(testMethods, tm =>
                 {
-                    var objectToTest = Activator.CreateInstance(testContainterType);
-                    test.Invoke(objectToTest, null);
+                    try
+                    {
+                        var objectToTest = Activator.CreateInstance(testClass);
+                        tm.Invoke(objectToTest, null);
+                    }
+                    catch (Exception e)
+                    {
+                        if (e.InnerException is TestFailedException)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"{tm.Name} failed");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Unknown error occured during test {tm.Name}");
+                        }
+                    }
                 }
-                catch(Exception e)
+                    );
+
+                Console.WriteLine($"Parallel run finished {stopwatch.ElapsedMilliseconds}");
+                stopwatch.Restart();
+
+                Console.WriteLine($"{stopwatch.ElapsedMilliseconds}");
+
+                foreach (var test in testMethods)
                 {
-                    if(e.InnerException is TestFailedException)
+                    try
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"{test.Name} failed");
-                        Console.ForegroundColor = ConsoleColor.White;
+                        var objectToTest = Activator.CreateInstance(testClass);
+                        test.Invoke(objectToTest, null);
                     }
-                    else
+                    catch (Exception e)
                     {
-                        Console.WriteLine($"Unknown error occured during test {test.Name}");
+                        if (e.InnerException is TestFailedException)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"{test.Name} failed");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Unknown error occured during test {test.Name}");
+                        }
+
                     }
-              
                 }
-               
+
+                Console.WriteLine($"Serial run finished {stopwatch.ElapsedMilliseconds}");
             }
 
             //Console.WriteLine(testContainterType);

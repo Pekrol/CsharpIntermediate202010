@@ -5,7 +5,6 @@ using TestRunner.Framework.Attributes;
 
 namespace TestRunner
 {
-    [TestClass]
     public class AnotherTests
     {
         [TestMethod]
