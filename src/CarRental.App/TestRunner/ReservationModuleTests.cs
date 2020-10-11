@@ -1,8 +1,11 @@
 ﻿using System;
+using TestRunner.Framework.Assertions;
 using TestRunner.Framework.Attributes;
+using CarRental.Bussiness.Reservations;
 
 namespace TestRunner
 {
+    [TestClass]
     public class ReservationModuleTests
     {
         [TestMethod]
@@ -20,7 +23,10 @@ namespace TestRunner
         [TestMethod]
         public void ReserveCarFromSegment_WhenAlreadyReserved_ShouldNotThrow()
         {
+        
             Console.WriteLine("Reserve car test - already reserved");
+            var reservationModule = new ReservationModule(null, null);
+            reservationModule.True(r => r.Available);
         }
     }
 }
