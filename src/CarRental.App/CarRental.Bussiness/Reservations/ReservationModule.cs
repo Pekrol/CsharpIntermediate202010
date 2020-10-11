@@ -16,6 +16,8 @@ namespace CarRental.Bussiness.Reservations
             this.config = config;
         }
 
+        public bool Available => false;
+
         public void ReserveCarFromSegment(Segment segment, DateTime startDate, DateTime endDate)
         {
             Console.WriteLine($"Someone want to rent car from segment {segment}");

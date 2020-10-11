@@ -8,5 +8,7 @@ namespace CarRental.Bussiness.Reservations
     public interface IReservationModule
     {
         void ReserveCarFromSegment(Segment segment, DateTime startDate, DateTime endDate);
+
+        bool Available { get; }
     }
 }
