@@ -7,7 +7,6 @@ namespace CarRental.Models
 {
     public class Car
     {
-        [Required]
         public string PlateId { get; set; }
 
         public Segment Segment { get; set; }
